@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     const buttonsDiv = document.querySelector(".keys");
     const display = document.querySelector("#screen-display");
-    
+
     let fullValue = "0";
     let isNewNumber = true;
     let powerOn = true;
@@ -121,7 +121,13 @@ document.addEventListener("DOMContentLoaded",()=>{
 
                         break;
 
-                    case ".":
+                    case ".":   
+
+                            
+                          if(!powerOn)
+                            {
+                                return "";
+                            }
                             
                             if(!isDotPresent)
                             {
@@ -137,6 +143,12 @@ document.addEventListener("DOMContentLoaded",()=>{
                         break;
 
                     case "+/-":
+
+                            
+                          if(!powerOn)
+                            {
+                                return "";
+                            }
 
                            fullValue.includes("-") === true ? isIntegerShow = true : isIntegerShow = false;
 
@@ -238,6 +250,12 @@ document.addEventListener("DOMContentLoaded",()=>{
 
                 }
                     function resultHandler() {
+                               
+                          if(!powerOn)
+                            {
+                                return "";
+                            }
+
 
                         if(lastValue && operation)
                         {

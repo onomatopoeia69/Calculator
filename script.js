@@ -170,8 +170,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 
         }
             function operationHandler(event) {
-                    
-                     document.dispatchEvent(new Event("operator"));
+
+                document.dispatchEvent(new Event("specialKey"));
 
                    if(!powerOn)
                     {
@@ -250,7 +250,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 
                 }
                     function resultHandler() {
-                               
+                            
+                         document.dispatchEvent(new Event("specialKey")); 
+
                           if(!powerOn)
                             {
                                 return "";
@@ -294,7 +296,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                                     specialHandler(event);
                                 }else if (dataType === "result") {
                                     resultHandler(event);
-                                }else{
+                                }else if(dataType === "operator"){
                                     operationHandler(event);
                                 }
                                         

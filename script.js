@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     const buttonsDiv = document.querySelector(".keys");
     const display = document.querySelector("#screen-display");
+    const btn = document.querySelectorAll('[id^="btn-"]');
 
     let fullValue = "0";
     let isNewNumber = true;
@@ -66,14 +67,14 @@ document.addEventListener("DOMContentLoaded",()=>{
                                 display.textContent = fullValue.slice(-14);
                                 isNewNumber = false;
 
-                                fullValue.search(".") === 0 ? isDotPresent = false : isDotPresent = true;
-
                             }else {
 
                                 fullValue = "0";
                                 display.textContent = fullValue;
                                 isNewNumber = true;
                             }
+
+                            fullValue.includes(".") === false ? isDotPresent = false : isDotPresent = true;
 
                         break;
                     
@@ -83,7 +84,8 @@ document.addEventListener("DOMContentLoaded",()=>{
                                 {
                                     return "";
                                 }
-
+                            
+                             btn.forEach((buttons) => buttons.classList.remove('active'));
                             fullValue = "0";
                             display.textContent = fullValue;
                             isDotPresent = false;
@@ -96,6 +98,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                             display.textContent = "Power Off";
                             powerOn = false;
 
+                            btn.forEach((buttons) => buttons.classList.remove('active'));
                             setTimeout(() => {
                                 event.target.textContent = "On";
                                 fullValue = "0";
@@ -115,6 +118,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                                 fullValue = "0";
                                 display.textContent = "0";
                                  powerOn = true;
+                                 isDotPresent = false;
                             }, 3 * 1000);
 
                             isNewNumber = true;
@@ -173,6 +177,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
                 document.dispatchEvent(new Event("specialKey"));
 
+
                    if(!powerOn)
                     {
                         return "";
@@ -180,7 +185,12 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
                     switch (event.target.textContent) {
+                        
+
                         case "+":
+
+                                btn.forEach((buttons) => buttons.classList.remove('active'));
+                                event.target.classList.add("active");
 
                                 if(!lastValue)
                                 {
@@ -198,6 +208,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 
                             case "X":
 
+                                btn.forEach((buttons) => buttons.classList.remove('active'));
+                                event.target.classList.add("active");
+
                                  if(!lastValue)
                                 {
                                     
@@ -214,6 +227,9 @@ document.addEventListener("DOMContentLoaded",()=>{
                             
                              case "-":
 
+                                   btn.forEach((buttons) => buttons.classList.remove('active'));
+                                event.target.classList.add("active");
+                                
                                   if(!lastValue)
                                 {
                                     
@@ -230,6 +246,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 
                               case "/":
 
+                                 btn.forEach((buttons) => buttons.classList.remove('active'));
+                                event.target.classList.add("active");
+                                
                                   if(!lastValue)
                                 {
                                     
@@ -250,7 +269,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 
                 }
                     function resultHandler() {
-                            
+                           
+                           btn.forEach((buttons) => buttons.classList.remove('active'));
+
                          document.dispatchEvent(new Event("specialKey")); 
 
                           if(!powerOn)
@@ -303,8 +324,6 @@ document.addEventListener("DOMContentLoaded",()=>{
                             }   
 
     buttonsDiv.addEventListener("click",buttonHandler);
-
-
 });
 
 

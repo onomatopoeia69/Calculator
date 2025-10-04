@@ -147,6 +147,12 @@ button:hover {
 
 }
 
+.active {
+
+    background-color : rgb(235, 164, 33);
+    border-color: rgb(235, 164, 33) rgb(192, 135, 28) rgb(235, 164, 33) rgb(192, 135, 28);
+}
+
 
 
 
